@@ -1,0 +1,38 @@
+# Project: BankSimulation
+# Makefile created by Dev-C++ 6.5
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = BankSimulation.o Event.o Queue.o main.o
+LINKOBJ  = BankSimulation.o Event.o Queue.o main.o
+LIBS     = -L"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/lib" -L"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/i686-w64-mingw32/lib" -static-libstdc++ -static-libgcc -g3
+INCS     = -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/include" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/i686-w64-mingw32/include" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/lib/gcc/i686-w64-mingw32/10.2.0/include" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/lib/gcc/i686-w64-mingw32/10.2.0/include-fixed"
+CXXINCS  = -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/include" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/i686-w64-mingw32/include" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/lib/gcc/i686-w64-mingw32/10.2.0/include" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/lib/gcc/i686-w64-mingw32/10.2.0/include-fixed" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/include/c++/10.2.0" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/include/c++/10.2.0/i686-w64-mingw32" -I"D:/LenovoSoftstore/Dev c++/Dev-Cpp/MinGW32/include/c++/10.2.0/backward"
+BIN      = BankSimulation.exe
+CXXFLAGS = $(CXXINCS) -Wall -Wextra -g3
+ENCODINGS = -finput-charset=utf-8 -fexec-charset=gbk
+CFLAGS   = $(INCS) -Wall -Wextra -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+BankSimulation.o: BankSimulation.c BankSimulation.h Event.h Queue.h Union.h
+	$(CC) -c BankSimulation.c -o BankSimulation.o $(CFLAGS) 
+
+Event.o: Event.c BankSimulation.h Event.h Queue.h Union.h
+	$(CC) -c Event.c -o Event.o $(CFLAGS) 
+
+Queue.o: Queue.c BankSimulation.h Event.h Queue.h Union.h
+	$(CC) -c Queue.c -o Queue.o $(CFLAGS) 
+
+main.o: main.c BankSimulation.h Event.h Queue.h Union.h
+	$(CC) -c main.c -o main.o $(CFLAGS) 
